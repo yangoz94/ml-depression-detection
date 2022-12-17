@@ -1,15 +1,25 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
+import Button from "./components/Button";
+import Image from "./components/Image";
+import Description from "./components/Description";
+import Header from "./components/Header";
+import Card from "./components/Card";
+import Page from "./components/Page";
+
+/* The app has a super simple interface so there is not even a need
+ for components. Still, I broke them down in case I decide to expand 
+ the application in the future*/
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="flex h-screen bg-red-500 items-center ">
-      <div className="flex bg-yellow-200 p-10 mx-auto rounded-xl">
-        <p className="text-3xl">This page will be updated...</p>
-      </div>
-    </div>
+    <Page>
+      <Card>
+        <Header />
+        <Image src="src/assets/wire.svg"></Image>
+        <Description />
+        <Button label="Try it out!" />
+      </Card>
+    </Page>
   );
 }
 
