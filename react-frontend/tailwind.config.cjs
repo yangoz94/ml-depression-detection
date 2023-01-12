@@ -6,6 +6,9 @@ module.exports = {
       backgroundImage: {
         "RED-GRADIENT": "linear-gradient(to right, #DC1C13, #F07470)",
       },
+      backgroundColor:{
+        "GREEN_MAIN": "#f6f5ea",
+      },
       keyframes: {
         "SCALE-IN-OUT": {
           "0%": { transform: "scale(1)" },
