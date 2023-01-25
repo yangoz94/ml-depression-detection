@@ -7,6 +7,7 @@ interface IInformationContainerProps {
 }
 
 function InformationContainer (props:IInformationContainerProps) {
+
   return (
     <div className="flex flex-col w-[600px] my-auto gap-3">
           <h2 className="text-[24px] px-5 md:text-[36px]"> {props.header}</h2>
