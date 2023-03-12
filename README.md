@@ -1,2 +1,3 @@
 # ml-depression-detection-
-Class Project: Oğuzhan Yangöz & Maxime Kotur
+A Machine Learning Web Application with BERT to detect Depression through Binary Classification
+< Screenshots and Explanations will be added here when the project is completed >

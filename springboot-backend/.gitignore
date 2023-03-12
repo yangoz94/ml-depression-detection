@@ -1,8 +1,11 @@
 HELP.md
 target/
+react-frontend/node_modules
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+
+
 
 ### STS ###
 .apt_generated
