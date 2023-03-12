@@ -6,7 +6,7 @@ function IntroContainer() {
   const context = useContext(RefContext);
 
   return (
-    <div className="flex flex-col gap-3 h-min-full m-5 bg-GREEN_MAIN p-5 rounded-xl md:gap-2">
+    <div className="flex flex-col gap-3 min-h-fit md:min-h-[calc(100vh-40px)] p-5 m-5 bg-GREEN_MAIN rounded-xl md:gap-2">
       <div className="w-36 rounded-xl bg-RED-GRADIENT ">
         <h3 className=" text-[white]"> Machine Learning </h3>
       </div>
@@ -23,7 +23,7 @@ function IntroContainer() {
       <div className="w-80 md:w-[450px]">
         <h3 className="text-justify">
           This model has 98% recall, precision and F1 scores. Trained with
-          TensorFlow, built with React, deployed on AWS Lambda.
+          TensorFlow, built with React, Springboot and Docker.
         </h3>
       </div>
       <button

@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect, RefObject, useContext } from "react";
 import { RefContext } from "../contexts/RefContext";
-import ButtonLarge from "./ButtonLarge";
 
 function DemoContainer() {
   const context = useContext(RefContext);
@@ -51,7 +50,9 @@ function DemoContainer() {
       </div>
       <div className="flex flex-col bg-inherit w-full gap-5 m-auto pb-5 ">
         <button
-          className="bg-[gray] lg:bg-gray text-white lg:text-2xl h-min mx-auto my-5 w-1/2 lg:w-[280px] lg:h-[150px] transition-all ease-linear duration-300  rounded-xl p-3 hover:bg-[gray] hover:scale-105"
+          className="bg-[gray] lg:bg-gray text-white lg:text-2xl h-min mx-auto my-5 w-1/2
+           lg:w-[280px] lg:h-[150px] transition-all ease-linear duration-300  rounded-xl p-3
+            hover:bg-[gray] hover:scale-105"
           onClick={sendInputHandler}
         >
           Click to See the Result

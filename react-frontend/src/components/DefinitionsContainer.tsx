@@ -2,7 +2,7 @@ import React from "react";
 import InformationContainer from "./InformationContainer";
 
 function DefinitionsContainer() {
-  const informationContainerData = [
+  const INFORMATION_CONTAINER_DATA = [
     {
       header: "What is a Transformer ?",
       content:
@@ -20,7 +20,7 @@ function DefinitionsContainer() {
   
   return (
     <div className="flex flex-wrap gap-y-10 h-fit bg-GREEN_MAIN py-10 m-5 rounded-lg ">
-      {informationContainerData.map((data) => (
+      {INFORMATION_CONTAINER_DATA.map((data) => (
         <InformationContainer
           key={data.header}
           header={data.header}
