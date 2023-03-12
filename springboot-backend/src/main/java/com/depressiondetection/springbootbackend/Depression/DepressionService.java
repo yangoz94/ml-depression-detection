@@ -19,6 +19,7 @@ public class DepressionService {
     }
 
     public void addInput(Depression input) {
+        // Logic to process the input and write the input and output to the database will be added here
         depressionRepository.save(input);
     }
 
