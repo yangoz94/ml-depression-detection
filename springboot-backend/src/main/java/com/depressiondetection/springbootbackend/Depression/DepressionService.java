@@ -28,7 +28,6 @@ public class DepressionService {
         return depressionRepository.findAll();
     }
 
-
     public void processInput(Depression depression) {
         JSONObject payload = new JSONObject();
         payload.put("input", depression.getInput());

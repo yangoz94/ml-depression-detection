@@ -6,7 +6,7 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @CrossOrigin
 public class RecaptchaController {
-    private static final String RECAPTCHA_SECRET = "6Lcz5fYkAAAAAHXhLw3NWbA8Lub6qocm-Z7z96TT";
+    private static final String RECAPTCHA_SECRET = System.getenv("RECAPTCHA_SECRET");
 
     @PostMapping("/validate")
     public boolean validateRecaptchaToken(@RequestBody RecaptchaRequest recaptchaRequest) {
