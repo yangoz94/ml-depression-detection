@@ -1,17 +1,14 @@
 package com.depressiondetection.springbootbackend.Depression;
 
-import com.amazonaws.services.lambda.model.InvocationType;
 import com.amazonaws.services.lambda.model.LogType;
-import org.apache.tomcat.util.json.JSONParser;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import java.util.Collections;
 import java.util.List;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.lambda.model.InvocationType;
 import com.amazonaws.services.lambda.AWSLambda;
 import com.amazonaws.services.lambda.AWSLambdaClientBuilder;
 import com.amazonaws.services.lambda.model.InvokeRequest;
@@ -20,7 +17,7 @@ import com.amazonaws.services.lambda.model.InvokeResult;
 @Service
 public class DepressionService {
     private final DepressionRepository depressionRepository;
-    private static final String AWS_LAMBDA_FUNCTION_NAME = System.getenv("FUNCTION_NAME");
+    private static final String AWS_LAMBDA_FUNCTION_NAME = System.getenv("AWS_LAMBDA_FUNCTION_NAME");
 
     @Autowired
     public DepressionService(DepressionRepository depressionRepository) {
