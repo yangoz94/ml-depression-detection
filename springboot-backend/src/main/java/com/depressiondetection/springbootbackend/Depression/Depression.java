@@ -24,7 +24,6 @@ public class Depression {
     }
 
     public Depression() {
-
     }
 
     public String getInput() {

@@ -13,12 +13,12 @@ public class DepressionConfiguration {
     CommandLineRunner commandLineRunner(DepressionRepository repository) {
         return args -> {
             Depression depression = new Depression(
-                    "I am sad",
+                    "life is so hard and I am very lost",
                     " "
             );
             Depression depression2 = new Depression(
-                    "i am happy",
-                    ""
+                    "i am actually very happy today",
+                    " "
             );
 
             repository.saveAll(

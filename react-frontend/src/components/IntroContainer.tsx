@@ -1,10 +1,10 @@
 import React from "react";
 import { useContext } from "react";
 import { RefContext } from "../contexts/RefContext";
+import Button from "./Button";
 
 function IntroContainer() {
   const context = useContext(RefContext);
-
   return (
     <div className="flex flex-col gap-3 min-h-fit md:min-h-[calc(100vh-40px)] p-5 m-5 bg-GREEN_MAIN rounded-xl md:gap-2">
       <div className="w-36 rounded-xl bg-RED-GRADIENT ">
@@ -26,12 +26,11 @@ function IntroContainer() {
           TensorFlow, built with React, Springboot and Docker.
         </h3>
       </div>
-      <button
-        className="bg-RED-GRADIENT text-lg  mx-auto my-5 w-80 md:w-[450px] rounded-xl p-3 animate-SCALER hover:bg-BLUE-GRADIENT"
+      <Button
+        className="bg-RED-GRADIENT mx-auto my-5 animate-SCALER hover:bg-BLUE-GRADIENT w-80 md:w-[450px]"
         onClick={() => context.demoRef.current?.scrollIntoView()}
-      >
-        Try it out!
-      </button>
+        children="Try it out!"
+      />
     </div>
   );
 }

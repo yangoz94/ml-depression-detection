@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class DepressionController {
     private final DepressionService depressionService;
 
@@ -13,9 +14,9 @@ public class DepressionController {
         this.depressionService = depressionService;
     }
 
-    @PostMapping("/addInput")
-    public void addInput(@RequestBody Depression input) {
-        depressionService.addInput(input);
+    @PostMapping("/processInput")
+    public void addInput(@RequestBody Depression depression) {
+        depressionService.processInput(depression);
     }
 
     @GetMapping("/depression")

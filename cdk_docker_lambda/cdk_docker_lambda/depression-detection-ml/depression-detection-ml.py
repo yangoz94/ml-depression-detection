@@ -9,7 +9,7 @@ import tensorflow_hub as hub
 The following line mounts the AWS Elastic File System (EFS) to the lambda container.
 This is where we store the model and the bert encoder to reduce the execution time of the lambda function.
 """
-sys.path.append(ENV_EFS_PATH)
+sys.path.append("/mnt/efs/BertClassifierDirectory")
 class CustomUnpickler(pickle.Unpickler):
     def find_class(self, module, name):
         if name == 'BERTClassifier':
@@ -18,7 +18,7 @@ class CustomUnpickler(pickle.Unpickler):
         return super().find_class(module, name)
 
 def preprocess(test):
-    encoder_path = ENV_ENCODER_PATH
+    encoder_path = '/mnt/efs/encoder'
     bert_encoder = hub.KerasLayer(encoder_path, trainable=True)
     # preprocess the input text
     test = [char.lower() for char in test]
@@ -28,24 +28,18 @@ def preprocess(test):
     return test_encoded
 
 def handler(event, context):
-    input_raw = json.loads(event["body"])
-    input_text = input_raw["body"]
-    input_text = [input_text]
+    input_text = [event["input"]]
     input_text_encoded = preprocess(input_text)
     # load the model
-    model = CustomUnpickler(open(ENV_BERT_PATH, 'rb')).load()
+    model = CustomUnpickler(open('/mnt/efs/bert.pkl', 'rb')).load()
     # make predictions
-    pred =  model.predict(input_text_encoded)
-    print("Prediction is --- ", pred)
+    pred = model.predict(input_text_encoded)
     output = str(pred[0])
-    print("Output is --- ", output)
     # return the prediction and the original input text
     return {
         "statusCode": 200,
         "headers": {'Content-Type': 'application/json'},
-        "body": {
-            "input": input_raw,
-            "output": output,
-            "message": "Success"
-        }
+        "input": event["input"],
+        "output": output,
+        "message": "Success!"
     }
