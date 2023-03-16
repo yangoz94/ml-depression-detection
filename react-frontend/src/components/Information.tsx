@@ -1,12 +1,12 @@
 import React from "react";
 
-interface IInformationContainerProps {
+interface IInformationProps {
     header: string;
     content: string;
     reference: string;
 }
 
-function InformationContainer (props:IInformationContainerProps) {
+function Information (props:IInformationProps) {
 
   return (
     <div className="flex flex-col w-[600px] my-auto gap-3">
@@ -19,4 +19,4 @@ function InformationContainer (props:IInformationContainerProps) {
     );
 }
 
-export default InformationContainer;
+export default Information;

@@ -21,6 +21,9 @@ module.exports = {
         SCALER: "SCALE-IN-OUT 2s ease-in-out infinite",
       },
     },
-    plugins: [],
+    plugins: [require("daisyui")],
+    daisyui: {
+      themes: ["light"],
+    },
   },
 };

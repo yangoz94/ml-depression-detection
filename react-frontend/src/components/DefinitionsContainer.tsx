@@ -1,5 +1,5 @@
 import React from "react";
-import InformationContainer from "./InformationContainer";
+import InformationContainer from "./Information";
 
 function DefinitionsContainer() {
   const INFORMATION_CONTAINER_DATA = [

@@ -19,7 +19,7 @@ const Button = ({
     <button
       type={type}
       className={`${className} text-white text-lg h-min mx-auto my-5 rounded-xl p-3
-      transition-all ease-linear duration-300  animate-SCALER disabled:animate-none`}
+      transition-all ease-linear duration-300  animate-SCALER  disabled:animate-none`}
       disabled={disabled}
       onClick={onClick}
     >
