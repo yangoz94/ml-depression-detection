@@ -66,6 +66,7 @@ function DemoContainer() {
       }
     } catch (error) {
       console.log("Error: ", error);
+      captchaRef.current?.reset();
     }
   };
 
