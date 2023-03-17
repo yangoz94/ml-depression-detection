@@ -1,8 +1,10 @@
 package com.depressiondetection.springbootbackend.Depression;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+
 
 @RestController
 @CrossOrigin
@@ -15,9 +17,11 @@ public class DepressionController {
     }
 
     @PostMapping("/processInput")
-    public void addInput(@RequestBody Depression depression) {
-        depressionService.processInput(depression);
+    public ResponseEntity<String> addInput(@RequestBody Depression depression) {
+        String output = depressionService.processInput(depression);
+        return ResponseEntity.ok().body(output);
     }
+
 
     @GetMapping("/depression")
     public List<Depression> viewDepressionData() {
