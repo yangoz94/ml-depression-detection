@@ -1,7 +1,7 @@
 import { useRef, RefObject, useState, useCallback } from "react";
-import IntroContainer from "./components/IntroContainer";
-import DefinitionsContainer from "./components/DefinitionsContainer";
-import DemoContainer from "./components/DemoContainer";
+import IntroContainer from "./containers/IntroContainer";
+import DefinitionsContainer from "./containers/DefinitionsContainer";
+import DemoContainer from "./containers/DemoContainer";
 import { RefContext } from "./contexts/RefContext";
 
 function App() {

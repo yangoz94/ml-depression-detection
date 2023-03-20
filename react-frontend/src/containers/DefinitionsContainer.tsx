@@ -1,5 +1,5 @@
 import React from "react";
-import InformationContainer from "./Information";
+import InformationContainer from "../components/Information";
 
 function DefinitionsContainer() {
   const INFORMATION_CONTAINER_DATA = [
@@ -17,7 +17,7 @@ function DefinitionsContainer() {
       reference: "https://huggingface.co/blog/bert-101#1-what-is-bert-used-for",
     },
   ];
-  
+
   return (
     <div className="flex flex-wrap gap-y-10 h-fit bg-GREEN_MAIN py-10 m-5 rounded-lg ">
       {INFORMATION_CONTAINER_DATA.map((data) => (
