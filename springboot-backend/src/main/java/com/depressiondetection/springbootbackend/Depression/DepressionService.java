@@ -49,7 +49,7 @@ public class DepressionService {
         depressionRepository.save(depression);
         return depressionOutput;
     }
-    
+
     public String createStatementJSON(String output) {
         /*
         This method creates a JSON object that contains a statement that will be sent and displayed to the user on browser.

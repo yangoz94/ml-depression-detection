@@ -9,7 +9,7 @@ function useInputSender() {
 
   const sendInput = async () => {
     setIsLoading(true);
-    const response = await fetch('http://localhost:8080/processInput', {
+    const response = await fetch(import.meta.env.VITE_INPUT_POST_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -22,7 +22,6 @@ function useInputSender() {
     if (response.ok) {
       const data = await response.json();
       const output = data.statement;
-      console.log(output.statement);
       setOutput(output); // update the output state with the retrieved value
     } else {
       console.log('Error:', response.status);
