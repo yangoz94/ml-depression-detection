@@ -16,7 +16,7 @@ public class Depression {
     )
     private Long id;
     private String input;
-    private String output = " "; //we will update the value after processing the input through AWS lambda
+    private String output = ""; //we will update the value after processing the input through AWS lambda
 
     public Depression (String input, String output) {
         this.input = input;
@@ -29,15 +29,14 @@ public class Depression {
     public String getInput() {
         return input;
     }
-    public String getOutput() {
-        return output;
-    }
 
     public void setOutput(String output) {
         this.output = output;
     }
 
-
+    public String getOutput() {
+        return this.output;
+    }
 }
 
 

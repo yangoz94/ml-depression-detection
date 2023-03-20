@@ -19,7 +19,8 @@ public class DepressionController {
     @PostMapping("/processInput")
     public ResponseEntity<String> addInput(@RequestBody Depression depression) {
         String output = depressionService.processInput(depression);
-        return ResponseEntity.ok().body(output);
+        String statementJSON = depressionService.createStatementJSON(output);
+        return ResponseEntity.ok().body(statementJSON);
     }
 
 

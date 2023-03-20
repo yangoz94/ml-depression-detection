@@ -1,3 +1,7 @@
-# ml-depression-detection-
+# ml-depression-detection
+
 A Machine Learning Web Application with BERT to detect Depression through Binary Classification
-< Screenshots and Explanations will be added here when the project is completed >
+
+Live link to the Web Application and detailed screenshots will be added here very soon
+
+

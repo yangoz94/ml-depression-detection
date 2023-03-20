@@ -14,13 +14,14 @@ import org.springframework.stereotype.Service;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DepressionService {
-
     private final DepressionRepository depressionRepository;
     private static final String AWS_LAMBDA_FUNCTION_NAME = System.getenv("AWS_LAMBDA_FUNCTION_NAME");
     private static final String AWS_LAMBDA_FUNCTION_REGION = System.getenv("AWS_LAMBDA_FUNCTION_REGION");
+    private static final AWSLambda lambda = AWSLambdaClientBuilder.standard().withRegion(AWS_LAMBDA_FUNCTION_REGION).build();
 
     @Autowired
     public DepressionService(DepressionRepository depressionRepository) {
@@ -32,7 +33,15 @@ public class DepressionService {
     }
 
     public String processInput(Depression depression) {
+        /*
+        This method checks if the input already exists in the database. If it does, it returns the output value from the database.
+        If it doesn't, it processes user input and updates the depression object with the appropriate output.
+        It then saves the depression object to the database. Returns the output value.
+         */
         String input = depression.getInput();
+        if (checkIfInputExistsInDB(input)) {
+            return depressionRepository.findByInput(input).get().getOutput();
+        }
         JSONObject payload = createPayload(input);
         String output = invokeLambda(payload);
         String depressionOutput = getDepressionOutput(output);
@@ -40,8 +49,26 @@ public class DepressionService {
         depressionRepository.save(depression);
         return depressionOutput;
     }
+    
+    public String createStatementJSON(String output) {
+        /*
+        This method creates a JSON object that contains a statement that will be sent and displayed to the user on browser.
+        However, the statement value will not be written to the database. Only numeric output value will be written to the database.
+        */
+        String statement = switch (output) {
+            case "0" -> "YAY! You don't seem to be showing any signs of depression! Keep it up!";
+            case "1" -> "You show some signs of depression. Please consider seeing a therapist!";
+            default -> "Sorry, something went terribly wrong. Please try again...";
+        };
+        JSONObject statementJSON = new JSONObject().put("statement", statement);
+        return statementJSON.toString();
+    }
 
     private JSONObject createPayload(String input) {
+        /*
+        This method creates a JSON object that contains the user input.
+        The JSON object will be sent to the AWS lambda function.
+         */
         JSONObject payload = new JSONObject();
         payload.put("input", input);
         payload.put("Content-Type", "application/json");
@@ -49,17 +76,15 @@ public class DepressionService {
     }
 
     private String invokeLambda(JSONObject payload) {
-        AWSLambda lambda = createLambdaClient();
+        /* This method invokes the AWS lambda function and returns the output. */
         InvokeRequest invokeRequest = createInvokeRequest(payload);
         InvokeResult invokeResult = lambda.invoke(invokeRequest);
+
         return parsePayload(invokeResult.getPayload());
     }
 
-    private AWSLambda createLambdaClient() {
-        return AWSLambdaClientBuilder.standard().withRegion(AWS_LAMBDA_FUNCTION_REGION).build();
-    }
-
     private InvokeRequest createInvokeRequest(JSONObject payload) {
+        /* This method creates an AWS lambda invoke request. */
         InvokeRequest invokeRequest = new InvokeRequest();
         invokeRequest.setFunctionName(AWS_LAMBDA_FUNCTION_NAME);
         invokeRequest.setPayload(payload.toString());
@@ -69,12 +94,19 @@ public class DepressionService {
     }
 
     private String parsePayload(ByteBuffer payload) {
+        /* This method parses the payload returned by the AWS lambda function. */
         return new String(payload.array(), StandardCharsets.UTF_8);
     }
 
-
     private String getDepressionOutput(String output) {
+        /* This asynchronous method extracts the depression output String from the JSON object returned by the AWS lambda function. */
         JSONObject jsonOutput = new JSONObject(output);
         return jsonOutput.getString("output");
+    }
+
+    private boolean checkIfInputExistsInDB(String input) {
+        /* This method checks if the user input already exists in the database. */
+        Optional<Depression> depressionOptional = depressionRepository.findByInput(input);
+        return depressionOptional.isPresent();
     }
 }
