@@ -39,7 +39,7 @@ function DemoContainer() {
 
       <div className="flex flex-col w-full m-auto pt-5 ">
         <ReCAPTCHA
-          sitekey={process.env.WEB_KEY as string}
+          sitekey={import.meta.env.VITE_WEB_KEY}
           ref={captchaRef}
           onChange={verifyToken}
           onExpired={() => setIsCaptchaValid(false)}

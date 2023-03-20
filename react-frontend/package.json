@@ -16,6 +16,7 @@
     "@mui/joy": "^5.0.0-alpha.71",
     "@mui/material": "^5.11.6",
     "daisyui": "^2.51.4",
+    "dotenv": "^16.0.3",
     "mui": "^0.0.1",
     "node.js": "^0.0.1-security",
     "react": "^18.2.0",
