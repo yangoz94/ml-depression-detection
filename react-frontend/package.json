@@ -1,5 +1,6 @@
 {
   "name": "react-frontend",
+  "homepage": "https://yangoz94.github.io/ml-depression-detection",
   "private": true,
   "version": "0.0.0",
   "type": "module",
