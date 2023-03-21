@@ -9,7 +9,7 @@ function useInputSender() {
 
   const sendInput = async () => {
     setIsLoading(true);
-    const response = await fetch(import.meta.env.VITE_INPUT_POST_ENDPOINT, {
+    const response = await fetch(import.meta.env.VITE_INPUT_POST_ENDPOINT as string, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

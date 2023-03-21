@@ -17,7 +17,7 @@ function useRecaptcha() {
     
     const verifyToken = async () => {
         try {
-            const response = await fetch(import.meta.env.VITE_TOKEN_VERIFICATION_ENDPOINT, tokenVerificationRequestBody );
+            const response = await fetch(import.meta.env.VITE_TOKEN_VERIFICATION_ENDPOINT as string, tokenVerificationRequestBody );
             if (response.ok) {
                 console.log(response);
                 setIsCaptchaValid(true);

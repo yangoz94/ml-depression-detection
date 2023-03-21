@@ -9,7 +9,6 @@ import BasicModal from "../components/BasicModal";
 import { RefContext } from "../contexts/RefContext";
 
 
-
 function DemoContainer() {
   const context = useContext(RefContext);
   // Custom hooks
@@ -41,7 +40,7 @@ function DemoContainer() {
 
       <div className="flex flex-col w-full m-auto pt-5 ">
         <ReCAPTCHA
-          sitekey={import.meta.env.VITE_WEB_KEY}
+          sitekey={ import.meta.env.VITE_WEB_KEY as string}
           ref={captchaRef}
           onChange={verifyToken}
           onExpired={() => setIsCaptchaValid(false)}
