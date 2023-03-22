@@ -16,7 +16,6 @@ function DemoContainer() {
   const { output, isLoading, setOutput, handleSubmit} = useInputSender();
   const { isModalOpen, handleModalOnClose } = useModal({output,setOutput});
 
-
   return (
     <form
       className="flex flex-col h-fit m-5 lg:gap-5 rounded-lg lg:flex-row bg-GREEN_MAIN dark:bg-slate-600 "
@@ -41,7 +40,7 @@ function DemoContainer() {
 
       <div className="flex flex-col w-full m-auto pt-5 ">
         <ReCAPTCHA
-          sitekey= {"6Lcz5fYkAAAAAK8dUlO0a34bjFrnUSiNqblW9DQ_"}
+          sitekey= {import.meta.env.VITE_WEB_KEY}
           ref={captchaRef}
           onChange={verifyToken}
           onExpired={() => setIsCaptchaValid(false)}

@@ -27,3 +27,4 @@ dist-ssr
 *.sln
 *.sw?
 .vscode/settings.json
+react-frontend/dist

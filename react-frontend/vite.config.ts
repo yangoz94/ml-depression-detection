@@ -6,5 +6,7 @@ export default defineConfig({
   plugins: [
     react(),
   ],
-  base: '/ml-depression-detection/',
+  define: {
+    'process.env': {}
+  }
 })
