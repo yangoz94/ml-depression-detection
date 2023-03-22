@@ -4,7 +4,7 @@ import Loading from "../components/Loading";
 import useRecaptcha from "../custom-hooks/useRecaptcha";
 import useInputSender from "../custom-hooks/useInputSender";
 import useModal from "../custom-hooks/useModal";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import BasicModal from "../components/BasicModal";
 import { RefContext } from "../contexts/RefContext";
 
@@ -21,6 +21,7 @@ function DemoContainer() {
       className="flex flex-col h-fit m-5 lg:gap-5 rounded-lg lg:flex-row bg-GREEN_MAIN dark:bg-slate-600 "
       ref={context.demoRef}
       onSubmit={handleSubmit}
+      method="POST"
     >
       <div className=" w-full my-auto p-5  ">
         <h1 className=" text-[24px] m-auto lg:text-[48px] lg:w-[250px]">
@@ -33,12 +34,13 @@ function DemoContainer() {
           className="h-[400px] w-full p-5 text-2xl lg:text-4xl text-center text-gray-500 rounded-lg border-none outline-none resize-none lg:py-28 lg:bg-transparent"
           placeholder="Please enter your input here. For example, I usually struggle with waking up early in the mornings..."
           ref={context.inputRef}
-          minLength={50}
+          minLength={20}
           maxLength={1999}
         />
       </div>
 
       <div className="flex flex-col w-full m-auto pt-5 ">
+        
         <ReCAPTCHA
           sitekey= {import.meta.env.VITE_WEB_KEY}
           ref={captchaRef}

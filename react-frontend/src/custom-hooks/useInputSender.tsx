@@ -8,6 +8,11 @@ function useInputSender() {
   const [isLoading, setIsLoading] = useState(false)
 
   const sendInput = async () => {
+
+    if (!context.inputRef.current?.value) {
+      alert('Please enter your input.');
+      return;
+    }
     setIsLoading(true);
     const response = await fetch(import.meta.env.VITE_INPUT_POST_ENDPOINT as string, {
       method: 'POST',
@@ -25,7 +30,7 @@ function useInputSender() {
       setOutput(output); // update the output state with the retrieved value
     } else {
       console.log('Error:', response.status);
-      alert('Oops there is a problem on our end. Please try again...: ' + response.status)
+      alert('Sorry, we used all our limited resources. Try again in a few seconds...: ' + response.status)
     }
     setIsLoading(false);  
   }

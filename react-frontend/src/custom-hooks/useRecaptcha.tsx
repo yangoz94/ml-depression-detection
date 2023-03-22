@@ -16,8 +16,11 @@ function useRecaptcha() {
                     token: captchaRef.current?.getValue(),
                     }),
             } );
-            
-            response.ok ? setIsCaptchaValid(true) : captchaRef.current?.reset();
+            if (response.ok) {
+                setIsCaptchaValid(true);
+            } else { 
+                captchaRef.current?.reset();
+            }
         } 
         catch (error) {
             console.log("Error: ", error);

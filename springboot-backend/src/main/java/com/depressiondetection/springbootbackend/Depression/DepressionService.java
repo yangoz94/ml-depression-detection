@@ -7,6 +7,7 @@ import com.amazonaws.services.lambda.model.InvokeRequest;
 import com.amazonaws.services.lambda.model.InvokeResult;
 import com.amazonaws.services.lambda.model.LogType;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class DepressionService {
@@ -32,7 +35,7 @@ public class DepressionService {
         return depressionRepository.findAll();
     }
 
-    public String processInput(Depression depression) {
+    public String processInput(Depression depression) throws ExecutionException, InterruptedException {
         /*
         This method checks if the input already exists in the database. If it does, it returns the output value from the database.
         If it doesn't, it processes user input and updates the depression object with the appropriate output.
@@ -44,7 +47,8 @@ public class DepressionService {
         }
         JSONObject payload = createPayload(input);
         String output = invokeLambda(payload);
-        String depressionOutput = getDepressionOutput(output);
+        CompletableFuture<String> outputFuture = getDepressionOutput(output);
+        String depressionOutput = outputFuture.get();
         depression.setOutput(depressionOutput);
         depressionRepository.save(depression);
         return depressionOutput;
@@ -98,10 +102,20 @@ public class DepressionService {
         return new String(payload.array(), StandardCharsets.UTF_8);
     }
 
-    private String getDepressionOutput(String output) {
-        /* This asynchronous method extracts the depression output String from the JSON object returned by the AWS lambda function. */
-        JSONObject jsonOutput = new JSONObject(output);
-        return jsonOutput.getString("output");
+    private CompletableFuture<String> getDepressionOutput(String output) {
+        CompletableFuture<String> future = new CompletableFuture<>();
+        try {
+            JSONObject jsonOutput = new JSONObject(output);
+            if (jsonOutput.has("output")) {
+                String depressionOutput = jsonOutput.getString("output");
+                future.complete(depressionOutput);
+            } else {
+                future.completeExceptionally(new JSONException("JSON object does not have an 'output' field"));
+            }
+        } catch (JSONException e) {
+            future.completeExceptionally(e);
+        }
+        return future;
     }
 
     private boolean checkIfInputExistsInDB(String input) {
