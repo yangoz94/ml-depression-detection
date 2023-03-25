@@ -12,7 +12,7 @@ import { RefContext } from "../contexts/RefContext";
 function DemoContainer() {
   const context = useContext(RefContext);
   // Custom hooks
-  const { captchaRef, isCaptchaValid, setIsCaptchaValid, verifyToken } = useRecaptcha();
+  const { captchaRef, isCaptchaValid, setIsCaptchaValid, verifyToken} = useRecaptcha();
   const { output, isLoading, setOutput, handleSubmit} = useInputSender();
   const { isModalOpen, handleModalOnClose } = useModal({output,setOutput});
 
@@ -36,11 +36,11 @@ function DemoContainer() {
           ref={context.inputRef}
           minLength={20}
           maxLength={1999}
+          required = {true}
         />
       </div>
 
       <div className="flex flex-col w-full m-auto pt-5 ">
-        
         <ReCAPTCHA
           sitekey= {import.meta.env.VITE_WEB_KEY}
           ref={captchaRef}

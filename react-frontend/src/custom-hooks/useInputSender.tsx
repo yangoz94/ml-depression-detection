@@ -1,6 +1,7 @@
 import { useState, useContext, useRef } from "react";
 import { RefContext } from "../contexts/RefContext";
 import { FormEvent } from "react";
+import {headers} from "../utilities/headers";
 
 function useInputSender() {
   const context = useContext(RefContext);
@@ -8,17 +9,12 @@ function useInputSender() {
   const [isLoading, setIsLoading] = useState(false)
 
   const sendInput = async () => {
-
-    if (!context.inputRef.current?.value) {
-      alert('Please enter your input.');
-      return;
-    }
+    
     setIsLoading(true);
     const response = await fetch(import.meta.env.VITE_INPUT_POST_ENDPOINT as string, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      method: "POST",
+      headers: headers,
+      mode: "cors",
       body: JSON.stringify({
         input: context.inputRef.current?.value
       })

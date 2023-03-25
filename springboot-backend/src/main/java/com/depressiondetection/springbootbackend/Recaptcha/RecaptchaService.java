@@ -14,6 +14,7 @@ public class RecaptchaService {
     private static final String RECAPTCHA_URL = RECAPTCHA_API + RECAPTCHA_SECRET + RECAPTCHA_TAG;
 
     public ResponseEntity<Boolean> validateRecaptchaToken(@RequestBody RecaptchaRequest recaptchaRequest) {
+        System.out.println("http request received...");
         RestTemplate restTemplate = new RestTemplate();
         String recaptchaUrl = RECAPTCHA_URL + recaptchaRequest.getToken();
         RecaptchaResponse response = restTemplate.postForObject(recaptchaUrl, "null", RecaptchaResponse.class);

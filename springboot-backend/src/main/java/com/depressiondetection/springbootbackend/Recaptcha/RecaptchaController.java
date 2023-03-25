@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS})
 public class RecaptchaController {
     private final RecaptchaService recaptchaService;
 
@@ -14,7 +14,7 @@ public class RecaptchaController {
         this.recaptchaService = recaptchaService;
     }
 
-    @PostMapping("/validate")
+    @PostMapping("/validate/")
     public ResponseEntity<Boolean> validateRecaptchaToken(@RequestBody RecaptchaRequest recaptchaRequest) {
         return recaptchaService.validateRecaptchaToken(recaptchaRequest);
     }

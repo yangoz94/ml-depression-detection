@@ -32,6 +32,7 @@ public class DepressionService {
     }
 
     public List<Depression> viewDepressionData() {
+        /* This method returns all the depression objects in the database */
         return depressionRepository.findAll();
     }
 
@@ -103,6 +104,7 @@ public class DepressionService {
     }
 
     private CompletableFuture<String> getDepressionOutput(String output) {
+        /* This method gets the depression output from the JSON object returned by the AWS lambda function. */
         CompletableFuture<String> future = new CompletableFuture<>();
         try {
             JSONObject jsonOutput = new JSONObject(output);

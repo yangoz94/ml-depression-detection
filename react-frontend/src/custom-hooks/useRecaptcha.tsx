@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, {useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import { headers } from "../utilities/headers";
 
 function useRecaptcha() {
     const captchaRef = useRef<ReCAPTCHA>(null);
@@ -9,9 +10,8 @@ function useRecaptcha() {
         try {
             const response = await fetch(import.meta.env.VITE_TOKEN_VERIFICATION_ENDPOINT as string, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: headers,
+                mode: "cors",
                 body: JSON.stringify({
                     token: captchaRef.current?.getValue(),
                     }),
@@ -23,11 +23,11 @@ function useRecaptcha() {
             }
         } 
         catch (error) {
-            console.log("Error: ", error);
+            captchaRef.current?.reset();
         }
     };
     
-    return { captchaRef, isCaptchaValid, setIsCaptchaValid, verifyToken };
+    return { captchaRef, isCaptchaValid, setIsCaptchaValid, verifyToken};
 }
 
 export default useRecaptcha;
