@@ -11,7 +11,7 @@ function useInputSender() {
   const sendInput = async () => {
     
     setIsLoading(true);
-    const response = await fetch(import.meta.env.VITE_INPUT_POST_ENDPOINT as string, {
+    const response = await fetch(import.meta.env.VITE_INPUT_POST_ENDPOINT, {
       method: "POST",
       headers: headers,
       mode: "cors",

@@ -42,16 +42,24 @@ public class DepressionService {
         If it doesn't, it processes user input and updates the depression object with the appropriate output.
         It then saves the depression object to the database. Returns the output value.
          */
+        System.out.println("ProcessInput request has just been received");
         String input = depression.getInput();
+        System.out.println("depression input received: " + input);
         if (checkIfInputExistsInDB(input)) {
             return depressionRepository.findByInput(input).get().getOutput();
         }
+        System.out.println("depression input was searched in the database and not found. Continue to process...");
         JSONObject payload = createPayload(input);
+        System.out.println("Json object payload created... Moving to invoking lambda method.");
         String output = invokeLambda(payload);
+        System.out.println("Lambda invoked and output was received.");
         CompletableFuture<String> outputFuture = getDepressionOutput(output);
         String depressionOutput = outputFuture.get();
+        System.out.println("depression output received: " + depressionOutput);
         depression.setOutput(depressionOutput);
+        System.out.println("depression output was set to the depression object.");
         depressionRepository.save(depression);
+        System.out.println("depression output is being returned to the controller. END");
         return depressionOutput;
     }
 
@@ -77,6 +85,10 @@ public class DepressionService {
         JSONObject payload = new JSONObject();
         payload.put("input", input);
         payload.put("Content-Type", "application/json");
+        payload.put("Accept", "application/json");
+        payload.put("Access-Control-Allow-Origin", "*");
+        payload.put("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        payload.put("Access-Control-Allow-Headers", "*");
         return payload;
     }
 

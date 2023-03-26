@@ -17,6 +17,7 @@ function useRecaptcha() {
                     }),
             } );
             if (response.ok) {
+                console.log("Token verified");
                 setIsCaptchaValid(true);
             } else { 
                 captchaRef.current?.reset();

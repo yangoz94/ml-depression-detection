@@ -4,7 +4,7 @@ import Loading from "../components/Loading";
 import useRecaptcha from "../custom-hooks/useRecaptcha";
 import useInputSender from "../custom-hooks/useInputSender";
 import useModal from "../custom-hooks/useModal";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import BasicModal from "../components/BasicModal";
 import { RefContext } from "../contexts/RefContext";
 
@@ -14,11 +14,11 @@ function DemoContainer() {
   // Custom hooks
   const { captchaRef, isCaptchaValid, setIsCaptchaValid, verifyToken} = useRecaptcha();
   const { output, isLoading, setOutput, handleSubmit} = useInputSender();
-  const { isModalOpen, handleModalOnClose } = useModal({output,setOutput});
+  const { isModalOpen, handleModalOnClose } = useModal({output, setOutput});
 
   return (
     <form
-      className="flex flex-col h-fit m-5 lg:gap-5 rounded-lg lg:flex-row bg-GREEN_MAIN dark:bg-slate-600 "
+      className="flex flex-col h-fit m-5 lg:gap-5 rounded-lg lg:flex-row bg-GREEN_MAIN dark:bg-slate-600"
       ref={context.demoRef}
       onSubmit={handleSubmit}
       method="POST"
