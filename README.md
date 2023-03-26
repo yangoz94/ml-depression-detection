@@ -2,6 +2,7 @@
 
 A Machine Learning Web Application with BERT to detect Depression through Binary Classification
 
-Live link to the Web Application and detailed screenshots will be added here very soon
+Live link to the Web Application: https://depression-detection-ml.web.app/
+
 
 
