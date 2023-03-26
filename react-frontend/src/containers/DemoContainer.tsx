@@ -34,7 +34,6 @@ function DemoContainer() {
           className="h-[400px] w-full p-5 text-2xl lg:text-4xl text-center text-gray-500 rounded-lg border-none outline-none resize-none lg:py-28 lg:bg-transparent"
           placeholder="Please enter your input here. For example, I usually struggle with waking up early in the mornings..."
           ref={context.inputRef}
-          minLength={20}
           maxLength={1999}
           required = {true}
         />

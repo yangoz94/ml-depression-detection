@@ -9,7 +9,11 @@ function useInputSender() {
   const [isLoading, setIsLoading] = useState(false)
 
   const sendInput = async () => {
-    
+    if (context.inputRef.current?.value.length < 20) {
+      alert('Please enter at least 20 characters.');
+      return;
+    }
+
     setIsLoading(true);
     const response = await fetch(import.meta.env.VITE_INPUT_POST_ENDPOINT, {
       method: "POST",

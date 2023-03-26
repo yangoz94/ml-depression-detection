@@ -1,5 +1,5 @@
 import React from "react";
-import InformationContainer from "../components/Information";
+import Information from "../components/Information";
 
 function DefinitionsContainer() {
   const INFORMATION_CONTAINER_DATA = [
@@ -19,9 +19,9 @@ function DefinitionsContainer() {
   ];
 
   return (
-    <div className="flex flex-wrap gap-y-10 h-fit bg-GREEN_MAIN py-10 m-5 rounded-lg ">
+    <div className="flex flex-wrap gap-y-10 bg-GREEN_MAIN py-10 m-5 rounded-lg ">
       {INFORMATION_CONTAINER_DATA.map((data) => (
-        <InformationContainer
+        <Information
           key={data.header}
           header={data.header}
           content={data.content}
