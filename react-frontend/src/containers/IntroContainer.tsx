@@ -20,7 +20,7 @@ function IntroContainer() {
         <img
           src="assets/wire.svg"
           alt="wire"
-          className="w-[400px] scale-110 md:scale-100 md:w-[500px] animate-pulse mx-auto"
+          className="w-[400px] scale-110 md:scale-100 md:w-[500px] mx-auto"
         ></img>
         <div className="w-80 md:w-[450px]">
           <h3 className="text-justify">
