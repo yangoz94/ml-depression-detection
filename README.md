@@ -7,7 +7,7 @@ Live link to the Web Application: https://depression-detection-ml.web.app/
 ## About the project
 Frontend: React.js / Typescript / Tailwind CSS / Vite  
 Backend: Spring Boot / Java / PostgreSQL / JPA / Hibernate  
-ML Model: Python / Tensorflow / Keras / BERT / Transformer 
+ML Model: Python / Tensorflow / Keras / BERT / Transformer  
 Cloud: AWS Lambda / AWS RDS / AWS Beanstalk / AWS Route 53 / AWS Certificate Manager  
 
 ## Demo 
