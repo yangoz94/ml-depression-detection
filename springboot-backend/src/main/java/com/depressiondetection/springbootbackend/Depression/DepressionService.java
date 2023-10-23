@@ -1,5 +1,8 @@
 package com.depressiondetection.springbootbackend.Depression;
 
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.lambda.AWSLambda;
 import com.amazonaws.services.lambda.AWSLambdaClientBuilder;
 import com.amazonaws.services.lambda.model.InvocationType;
@@ -24,7 +27,17 @@ public class DepressionService {
     private final DepressionRepository depressionRepository;
     private static final String AWS_LAMBDA_FUNCTION_NAME = System.getenv("AWS_LAMBDA_FUNCTION_NAME");
     private static final String AWS_LAMBDA_FUNCTION_REGION = System.getenv("AWS_LAMBDA_FUNCTION_REGION");
-    private static final AWSLambda lambda = AWSLambdaClientBuilder.standard().withRegion(AWS_LAMBDA_FUNCTION_REGION).build();
+
+//    private static final AWSLambda lambda = AWSLambdaClientBuilder.standard().withRegion(AWS_LAMBDA_FUNCTION_REGION).build();
+    private static final AWSCredentials awsCredentials = new BasicAWSCredentials(
+        System.getenv("AWS_ACCESS_KEY_ID"),
+        System.getenv("AWS_SECRET_ACCESS_KEY")
+    );
+    private static final AWSLambda lambda = AWSLambdaClientBuilder.standard()
+            .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
+            .withRegion(AWS_LAMBDA_FUNCTION_REGION)
+            .build();
+
 
     @Autowired
     public DepressionService(DepressionRepository depressionRepository) {
@@ -89,6 +102,7 @@ public class DepressionService {
         payload.put("Access-Control-Allow-Origin", "*");
         payload.put("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
         payload.put("Access-Control-Allow-Headers", "*");
+        System.out.println("Json object payload created: " + payload.toString());
         return payload;
     }
 
@@ -104,6 +118,7 @@ public class DepressionService {
         /* This method creates an AWS lambda invoke request. */
         InvokeRequest invokeRequest = new InvokeRequest();
         invokeRequest.setFunctionName(AWS_LAMBDA_FUNCTION_NAME);
+
         invokeRequest.setPayload(payload.toString());
         invokeRequest.withInvocationType(InvocationType.RequestResponse);
         invokeRequest.withLogType(LogType.Tail);

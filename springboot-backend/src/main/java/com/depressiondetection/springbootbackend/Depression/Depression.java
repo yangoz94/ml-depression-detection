@@ -27,7 +27,7 @@ public class Depression {
     }
 
     public String getInput() {
-        return input;
+        return this.input;
     }
 
     public void setOutput(String output) {
