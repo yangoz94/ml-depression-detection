@@ -4,7 +4,7 @@ import Modal from '@mui/material/Modal';
 import { Dispatch, SetStateAction } from 'react';
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -14,7 +14,7 @@ const style = {
   borderRadius: 5 ,
   boxShadow: 24,
   p: 4,
-  textAlign:"center" as "center"
+  textAlign:"center"
 };
 
 type Props = {
