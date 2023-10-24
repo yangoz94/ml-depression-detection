@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: ml-depression-detection-main-env
 
     steps:
     - name: Checkout
@@ -33,5 +34,5 @@ jobs:
         application_name: NLP
         environment_name: NLP-env
         version_label: ${{ github.run_id }}
-        region: us-east-1
+        region: ${{ secrets.AWS_REGION }}
         deployment_package: deploy.zip
