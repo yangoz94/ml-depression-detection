@@ -2,7 +2,7 @@
 
 A Machine Learning Web Application with BERT to detect Depression in text.
 
-Live link to the Web Application: https://depression-detection-ml.web.app/
+Live link to the Web Application: https://ml-depression-detection.vercel.app
 
 ## About the project
 Frontend: React.js / Typescript / Tailwind CSS / Vite  
