@@ -8,7 +8,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: ml-depression-detection-main-env
 
     steps:
     - name: Checkout
@@ -24,15 +23,15 @@ jobs:
       run: mvn -B package --file springboot-backend/pom.xml
 
     - name: Generate deployment package
-      run: zip -r deploy.zip springboot-backend/target/springboot-backend-0.0.1-SNAPSHOT.jar
+      run: zip -r deploy.zip . -x '*.git*'
 
     - name: Deploy to AWS Elastic Beanstalk
-      uses: einaregilsson/beanstalk-deploy@v14
+      uses: einaregilsson/beanstalk-deploy@v21
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: NLP
         environment_name: NLP-env
-        version_label: ${{ github.run_id }}
+        version_label: NLP-version-1
         region: ${{ secrets.AWS_REGION }}
         deployment_package: deploy.zip
