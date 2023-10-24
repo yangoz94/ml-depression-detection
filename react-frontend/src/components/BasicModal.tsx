@@ -17,7 +17,6 @@ const style = {
   p: 4,
   textAlign:"center" as "center"
 };
-//  bgcolor: 'background.red',
 
 type Props = {
     output: string;
