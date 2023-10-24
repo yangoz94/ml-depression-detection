@@ -31,4 +31,4 @@ jobs:
         environment_name: NLP-env
         version_label: ${{ github.run_id }}
         region: ${{ secrets.AWS_REGION }}
-        source_bundle: springboot-backend/target/springboot-backend-0.0.1-SNAPSHOT.jar
+        deployment_package: springboot-backend/target/springboot-backend-0.0.1-SNAPSHOT.jar
