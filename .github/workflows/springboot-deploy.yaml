@@ -22,6 +22,9 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file springboot-backend/pom.xml
 
+    - name: Generate deployment package
+      run: zip -r deploy.zip springboot-backend/target/springboot-backend-0.0.1-SNAPSHOT.jar
+
     - name: Deploy to AWS Elastic Beanstalk
       uses: einaregilsson/beanstalk-deploy@v14
       with:
@@ -30,5 +33,5 @@ jobs:
         application_name: NLP
         environment_name: NLP-env
         version_label: ${{ github.run_id }}
-        region: ${{ secrets.AWS_REGION }}
-        deployment_package: springboot-backend/target/springboot-backend-0.0.1-SNAPSHOT.jar
+        region: us-east-1
+        deployment_package: deploy.zip
