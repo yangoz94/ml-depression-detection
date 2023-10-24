@@ -1,4 +1,4 @@
-import Information from "../components/Information";
+import Information from "../components/Information"; 
 
 function DefinitionsContainer() {
   const INFORMATION_CONTAINER_DATA = [
