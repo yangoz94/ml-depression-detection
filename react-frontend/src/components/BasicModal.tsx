@@ -3,7 +3,6 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Dispatch, SetStateAction } from 'react';
 
-
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
