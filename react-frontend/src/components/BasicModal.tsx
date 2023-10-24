@@ -46,6 +46,6 @@ function BasicModal( props: Props ) {
       </Modal>
     </div>
   );
-}
+} 
 
 export default BasicModal;
