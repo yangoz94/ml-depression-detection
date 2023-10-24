@@ -16,6 +16,7 @@ const style = {
   p: 4,
   textAlign:"center" as "center"
 };
+
 type Props = {
     output: string;
     onClose: Dispatch<SetStateAction<boolean>>;
