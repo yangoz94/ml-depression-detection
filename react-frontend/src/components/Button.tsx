@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 interface ButtonProps {
   type?: 'submit' | 'button';
   className?: string;
@@ -8,6 +7,7 @@ interface ButtonProps {
   onClick?: () => void;
   children: React.ReactNode;
 }
+
 
 const Button = ({
   type = 'button',
