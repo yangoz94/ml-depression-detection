@@ -7,9 +7,9 @@
     "predeploy": "npm run build",
     "deploy": "firebase deploy",
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "host": "vite --host"
+    "type-check": "tsc",
+    "build": "npm run build",
+    "preview": "npm run preview"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
