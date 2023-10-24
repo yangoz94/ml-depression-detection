@@ -13,13 +13,10 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Clear npm cache
-        run: npm cache clean -f
-
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14  # Choose an appropriate Node.js version
+          node-version: 18.0
 
       - name: Install and build
         run: |
