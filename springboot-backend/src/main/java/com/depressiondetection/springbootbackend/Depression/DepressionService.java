@@ -28,7 +28,7 @@ public class DepressionService {
     private static final String AWS_LAMBDA_FUNCTION_NAME = System.getenv("AWS_LAMBDA_FUNCTION_NAME");
     private static final String AWS_LAMBDA_FUNCTION_REGION = System.getenv("AWS_LAMBDA_FUNCTION_REGION");
 
-//    private static final AWSLambda lambda = AWSLambdaClientBuilder.standard().withRegion(AWS_LAMBDA_FUNCTION_REGION).build();
+//private static final AWSLambda lambda = AWSLambdaClientBuilder.standard().withRegion(AWS_LAMBDA_FUNCTION_REGION).build();
     private static final AWSCredentials awsCredentials = new BasicAWSCredentials(
         System.getenv("AWS_ACCESS_KEY_ID"),
         System.getenv("AWS_SECRET_ACCESS_KEY")
