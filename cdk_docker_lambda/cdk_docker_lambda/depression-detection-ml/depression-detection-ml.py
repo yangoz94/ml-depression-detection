@@ -28,6 +28,7 @@ def preprocess(test):
     return test_encoded
 
 def handler(event, context):
+    print("Event object is ", event)
     input_text = [event["input"]]
     input_text_encoded = preprocess(input_text)
     # load the model
