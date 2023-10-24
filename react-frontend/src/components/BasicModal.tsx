@@ -24,7 +24,6 @@ type Props = {
     onClose: Dispatch<SetStateAction<boolean>>;
     open: boolean;
 }       
-
 function BasicModal( props: Props ) {
 
   const handleClose = () => props.onClose(false); // wrapper to bypass MUIU props type
