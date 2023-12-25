@@ -38,6 +38,6 @@ public class Depression {
         return this.output;
     }
 }
-  
+   
 
 
