@@ -37,7 +37,7 @@ public class Depression {
     public String getOutput() {
         return this.output;
     }
-}
+} 
    
 
 
