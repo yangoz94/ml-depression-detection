@@ -33,6 +33,6 @@ jobs:
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: ml-depression-depression-be
         environment_name: ml-depression-depression-be-env
-        version_label: ml-depression-depression-be-version-1
+        version_label: ml-depression-depression-be-version-2
         region: ${{ secrets.AWS_REGION }}
         deployment_package: deploy.zip
