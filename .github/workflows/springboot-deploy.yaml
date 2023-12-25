@@ -31,9 +31,9 @@ jobs:
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: NLP
-        environment_name: NLP-env
-        version_label: NLP-version-1
+        application_name: ml-depression-detection-backend
+        environment_name: ml-depression-detection-backend-env
+        version_label: ml-depression-detection-backend-version-${{ github.run_number }}
         region: ${{ secrets.AWS_REGION }}
         deployment_package: deploy.zip
         use_existing_version_if_available: true
